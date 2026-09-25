@@ -12,7 +12,8 @@ except ImportError:  # pragma: no cover
     psycopg2 = None
 
 BASE_DIR = Path(__file__).resolve().parent
-DB_PATH = BASE_DIR / "vape_guard.db"
+IS_VERCEL = bool(os.environ.get("VERCEL"))
+DB_PATH = Path("/tmp/vape_guard.db") if IS_VERCEL else BASE_DIR / "vape_guard.db"
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 app = Flask(
