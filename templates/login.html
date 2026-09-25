@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Admin - VapeGuard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body>
+    <div class="auth-wrapper">
+      <div class="auth-card">
+        <div class="brand-wrap" style="margin-bottom: 18px;">
+          <div class="brand-mark">V</div>
+          <div>
+            <p class="eyebrow">Admin Access</p>
+            <h1>VapeGuard</h1>
+          </div>
+        </div>
+
+        <h2>Login Admin</h2>
+        <p class="muted">Masuk untuk mengelola produk dan melihat log verifikasi.</p>
+
+        {% if error %}
+        <div class="result-box error">{{ error }}</div>
+        {% endif %}
+
+        <form method="post" class="auth-form" action="{{ url_for('login') }}">
+          <div class="field">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" placeholder="admin" required />
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="••••••••" required />
+          </div>
+
+          <button type="submit" class="primary-btn">Masuk</button>
+        </form>
+
+        <div class="auth-meta" style="margin-top: 16px;">
+          <span>Default:</span>
+          <strong>admin / admin123</strong>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VapeGuard Verification</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-wrap">
+          <div class="brand-mark">V</div>
+          <div>
+            <p class="eyebrow">Sistem Validasi</p>
+            <h1>VapeGuard</h1>
+          </div>
+        </div>
+        <nav class="top-nav">
+          <a href="/admin">Admin Panel</a>
+        </nav>
+      </header>
+
+      <main class="dashboard">
+        <section class="card validation-card">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow accent">Validasi Produk</p>
+              <h2>Keaslian Vape</h2>
+            </div>
+            <div class="status-light" id="productStatusLight"></div>
+          </div>
+
+          <form id="productForm" class="stacked-form">
+            <label for="serialInput">Nomor Seri Produk</label>
+            <div class="input-row">
+              <input
+                id="serialInput"
+                type="text"
+                placeholder="Contoh: VAPE-2024-ALPHA"
+                autocomplete="off"
+              />
+              <button type="submit" class="primary-btn">Cek Keaslian</button>
+            </div>
+          </form>
+
+          <div id="productResult" class="result-box neutral">
+            Masukkan nomor seri untuk memeriksa status keaslian produk Anda.
+          </div>
+        </section>
+
+        <section class="card camera-card">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow accent">Verifikasi Usia</p>
+              <h2>Pemeriksaan Wajah</h2>
+            </div>
+          </div>
+
+          <div class="camera-stage">
+            <video id="video" autoplay playsinline muted></video>
+            <div class="camera-overlay"></div>
+          </div>
+
+          <div class="button-row">
+            <button id="startCameraBtn" type="button" class="primary-btn">Buka Kamera</button>
+            <button id="checkAgeBtn" type="button" class="secondary-btn">Deteksi Umur</button>
+          </div>
+
+          <div id="cameraStatus" class="status-note">Kamera belum aktif.</div>
+          <div id="ageResult" class="result-box neutral">
+            Silakan aktifkan kamera dan pastikan wajah terlihat jelas di layar.
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.13/dist/face-api.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+  </body>
+</html>

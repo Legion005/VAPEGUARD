@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - VapeGuard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body>
+    <div class="admin-shell">
+      <header class="topbar">
+        <div class="brand-wrap">
+          <div class="brand-mark">V</div>
+          <div>
+            <p class="eyebrow">Admin Panel</p>
+            <h1>VapeGuard</h1>
+          </div>
+        </div>
+        <nav class="top-nav">
+          <a href="/">Kembali ke Home</a>
+        </nav>
+      </header>
+
+      <main class="admin-grid">
+        <section class="card">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow accent">Kelola Produk</p>
+              <h2>Tambah Produk Baru</h2>
+            </div>
+          </div>
+
+          <form id="productAdminForm" class="stacked-form">
+            <div class="form-grid">
+              <div>
+                <label for="adminSerial">Nomor Seri</label>
+                <input id="adminSerial" type="text" placeholder="VAPE-2025-XYZ" />
+              </div>
+              <div>
+                <label for="adminName">Nama Produk</label>
+                <input id="adminName" type="text" placeholder="Nova Smart 2" />
+              </div>
+              <div>
+                <label for="adminBatch">Batch</label>
+                <input id="adminBatch" type="text" placeholder="B-2025" />
+              </div>
+              <div>
+                <label for="adminManufacturer">Produsen</label>
+                <input id="adminManufacturer" type="text" placeholder="VaporPrime Labs" />
+              </div>
+            </div>
+            <button type="submit" class="primary-btn">Simpan Produk</button>
+          </form>
+
+          <div id="adminProductMessage" class="result-box neutral">
+            Data produk akan muncul di tabel berikut.
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow accent">Riwayat</p>
+              <h2>Log Verifikasi</h2>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Serial</th>
+                  <th>Umur</th>
+                  <th>Status</th>
+                  <th>Waktu</th>
+                </tr>
+              </thead>
+              <tbody id="adminLogsTable"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+
+      <section class="card" style="margin-top: 24px;">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow accent">Daftar Produk</p>
+            <h2>Semua Produk Terdaftar</h2>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Serial</th>
+                <th>Nama</th>
+                <th>Batch</th>
+                <th>Produsen</th>
+              </tr>
+            </thead>
+            <tbody id="productTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/admin.js') }}" defer></script>
+  </body>
+</html>
