@@ -16,6 +16,10 @@ IS_VERCEL = bool(os.environ.get("VERCEL"))
 DB_PATH = Path("/tmp/vape_guard.db") if IS_VERCEL else BASE_DIR / "vape_guard.db"
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
+
+def ensure_db_directory():
+    DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+
 app = Flask(
     __name__,
     template_folder=str(BASE_DIR / "templates"),
@@ -55,7 +59,8 @@ def get_db():
             db = psycopg2.connect(DATABASE_URL)
             db.row_factory = None
         else:
-            db = sqlite3.connect(DB_PATH)
+            ensure_db_directory()
+            db = sqlite3.connect(str(DB_PATH))
             db.row_factory = sqlite3.Row
         g._database = db
     return db
@@ -117,7 +122,8 @@ def init_db():
         conn.close()
         return
 
-    with sqlite3.connect(DB_PATH) as conn:
+    ensure_db_directory()
+    with sqlite3.connect(str(DB_PATH)) as conn:
         conn.execute(
             """
             CREATE TABLE IF NOT EXISTS products (
